@@ -42,7 +42,24 @@
             $("#movieSearchBox").blur(invokeSearch);
         });
         function invokeSearch() {
-            alert("blur Start the search");
+            var sMovieName = $("#movieSearchBox").val();
+            var oData;
+
+            var sUrl = 'https://www.omdbapi.com/?t=' + sMovieName + '&type=movie&tomatoes=true';
+
+            $.ajax(sUrl, {
+                complete: function (pOXhr, pSStatus) {
+                    oData = $.parseJSON(pOXhr.responseText);
+                    if (oData != undefined) {
+                        alert(oData.Plot);
+                    }
+                    //$Container.find('.title').text(oData.Title);
+                    //$Container.find('.plot').text(oData.Plot);
+                    //$Container.find('.poster').html('<img src="' + oData.Poster + '"/>');
+                    //$Container.find('.year').text(oData.Year);
+                    //$Container.show();
+                }
+            });
         }
 
     </script>
