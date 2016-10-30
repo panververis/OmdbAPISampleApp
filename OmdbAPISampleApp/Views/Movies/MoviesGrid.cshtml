@@ -19,44 +19,54 @@
 <div class="row">
     <div class="col-md-15 col-sm-3">
         <span class ="batmanPoster">
+            <img src="~/Content/Images/loading_icon.png" />
         </span>
     </div>
     <div class="col-md-15 col-sm-3">
         <span class="spidermanPoster">
+            <img src="~/Content/Images/loading_icon.png" />
         </span>
     </div>
     <div class="col-md-15 col-sm-3">
         <span class="supermanPoster">
+            <img src="~/Content/Images/loading_icon.png" />
         </span>
     </div>
     <div class="col-md-15 col-sm-3">
         <span class="captainAmericaPoster">
+            <img src="~/Content/Images/loading_icon.png" />
         </span>
     </div>
     <div class="col-md-15 col-sm-3">
         <span class="daredevilPoster">
+            <img src="~/Content/Images/loading_icon.png" />
         </span>
     </div>
 </div>
 <div class="row">
     <div class="col-md-15 col-sm-3">
         <span class="theGodfatherPoster">
+            <img src="~/Content/Images/loading_icon.png" />
         </span>
     </div>
     <div class="col-md-15 col-sm-3">
         <span class="twelveAngryMenPoster">
+            <img src="~/Content/Images/loading_icon.png" />
         </span>
     </div>
     <div class="col-md-15 col-sm-3">
         <span class="pulpFictionPoster">
+            <img src="~/Content/Images/loading_icon.png" />
         </span>
     </div>
     <div class="col-md-15 col-sm-3">
         <span class="lordOfTheRingsPoster">
+            <img src="~/Content/Images/loading_icon.png" />
         </span>
     </div>
     <div class="col-md-15 col-sm-3">
         <span class="fightClubPoster">
+            <img src="~/Content/Images/loading_icon.png" />
         </span>
     </div>
 </div>
@@ -65,7 +75,7 @@
 {
     <script>
         $(function() {
-            //LoadFirstPageMovies();
+            LoadFirstPageMovies();
             $("#movieSearchBox").blur(invokeSearch);
         });
 
@@ -75,7 +85,7 @@
                 return;
             }
             var oData;
-            var sUrl = 'https://www.omdbapi.com/?t=' + sMovieName + '&type=movie&tomatoes=true';
+            var sUrl = 'https://www.omdbapi.com/?t=' + sMovieName + '&type=movie';
 
             $.ajax(sUrl,
             {
@@ -95,8 +105,14 @@
 
         function LoadFirstPageMovies() {
 
-            var movieNamesArray = ["Batman", "Superman", "Spiderman", "Captain America", "Daredevil",
-            "The Godfather", "12 Angry Men", "Pulp Fiction", "Lord Of The Rings", "Fight Club"];
+            var movieNamesArray = [
+                "Batman", "Superman", "Spiderman", "Captain America", "Daredevil",
+                "The Godfather", "12 Angry Men", "Pulp Fiction", "Lord Of The Rings", "Fight Club"
+            ];
+            var movieUrls = [];
+            for (var i = 0; i < movieNamesArray.length; i++) {
+                movieUrls.push('https://www.omdbapi.com/?t=' + movieNamesArray[i] + '&type=movie');
+            }
             var oBatmanData,
                 oSpidermanData,
                 oSupermanData,
@@ -107,16 +123,140 @@
                 oPulpFictionData,
                 oLordOfTheRingsData,
                 oFightClubData;
-            var objectResultArray = [oBatmanData, oSpidermanData, oSupermanData, oCtpAmericaData,
+            var objectResultArray = [
+                oBatmanData, oSpidermanData, oSupermanData, oCtpAmericaData,
                 oDaredevilData, oTheGodfatherData, oSpidermanTwelveAngryMenData, oPulpFictionData,
-                oLordOfTheRingsData, oFightClubData];
+                oLordOfTheRingsData, oFightClubData
+            ];
 
-            $.when(
-            {
-                
-            }).then(alert("hello"));
-        
+            for (var j = 0; j < movieNamesArray.length; j++) {
+                $.ajax(movieUrls[j],
+                {
+                    complete: function(pOXhr, pSStatus) {
+                        objectResultArray[j] = $.parseJSON(pOXhr.responseText);
+                        if (objectResultArray[j] != undefined) {
+                            alert(j + " ok");
+                        } else {
+                            alert(j + " not ok");
+                        }
+
+                    }
+                });
+            }
         }
 
+        //$.when(
+
+        //    $.ajax(movieUrls[0],
+        //    {complete: function(pOXhr, pSStatus) {
+        //            objectResultArray[0] = $.parseJSON(pOXhr.responseText);
+        //            if (objectResultArray[0] != undefined) {
+        //                alert("0 ok");
+        //            } else {
+        //                alert("0 not ok");
+        //            }
+
+        //        }
+        //    }), 
+
+        //    $.ajax(movieUrls[1],
+        //    {complete: function (pOXhr, pSStatus) {
+        //            objectResultArray[1] = $.parseJSON(pOXhr.responseText);
+        //            if (objectResultArray[1] != undefined) {
+        //                alert("1 ok");
+        //            } else {
+        //                alert("1 not ok");
+        //            }
+        //        }
+        //    }),
+        //    $.ajax(movieUrls[2],
+        //    {complete: function (pOXhr, pSStatus) {
+        //        objectResultArray[2] = $.parseJSON(pOXhr.responseText);
+        //        if (objectResultArray[2] != undefined) {
+        //            alert("2 ok");
+        //        } else {
+        //            alert("2 not ok");
+        //        }
+        //    }
+        //    }),
+        //    $.ajax(movieUrls[3],
+        //    {complete: function (pOXhr, pSStatus) {
+        //        objectResultArray[3] = $.parseJSON(pOXhr.responseText);
+        //        if (objectResultArray[3] != undefined) {
+        //            alert("3 ok");
+        //        } else {
+        //            alert("3 not ok");
+        //        }
+        //    }
+        //    }),
+        //    $.ajax(movieUrls[4],
+        //    {complete: function (pOXhr, pSStatus) {
+        //        objectResultArray[4] = $.parseJSON(pOXhr.responseText);
+        //        if (objectResultArray[4] != undefined) {
+        //            alert("4 ok");
+        //        } else {
+        //            alert("4 not ok");
+        //        }
+        //    }
+        //    }),
+        //    $.ajax(movieUrls[5],
+        //    {complete: function (pOXhr, pSStatus) {
+        //        objectResultArray[5] = $.parseJSON(pOXhr.responseText);
+        //        if (objectResultArray[5] != undefined) {
+        //            alert("5 ok");
+        //        } else {
+        //            alert("5 not ok");
+        //        }
+        //    }
+        //    }),
+        //    $.ajax(movieUrls[6],
+        //    {complete: function (pOXhr, pSStatus) {
+        //        objectResultArray[6] = $.parseJSON(pOXhr.responseText);
+        //        if (objectResultArray[6] != undefined) {
+        //            alert("6 ok");
+        //        } else {
+        //            alert("6 not ok");
+        //        }
+        //    }
+        //    }),
+        //    $.ajax(movieUrls[7],
+        //    {complete: function (pOXhr, pSStatus) {
+        //        objectResultArray[7] = $.parseJSON(pOXhr.responseText);
+        //        if (objectResultArray[7] != undefined) {
+        //            alert("7 ok");
+        //        } else {
+        //            alert("7 not ok");
+        //        }
+        //    }
+        //    }),
+        //    $.ajax(movieUrls[8],
+        //    {complete: function (pOXhr, pSStatus) {
+        //        objectResultArray[8] = $.parseJSON(pOXhr.responseText);
+        //        if (objectResultArray[8] != undefined) {
+        //            alert("8 ok");
+        //        } else {
+        //            alert("8 not ok");
+        //        }
+        //    }
+        //    }),
+        //    $.ajax(movieUrls[9],
+        //    {complete: function (pOXhr, pSStatus) {
+        //        objectResultArray[9] = $.parseJSON(pOXhr.responseText);
+        //        if (objectResultArray[9] != undefined) {
+        //            alert("9 ok");
+        //        } else {
+        //            alert("9 not ok");
+        //        }
+        //    }
+        //    })
+        //).then(alert("All loaded"));
+
+        //$Container.find('.title').text(oData.Title);
+        //$Container.find('.plot').text(oData.Plot);
+        //$Container.find('.poster').html('<img src="' + oData.Poster + '" />');
+        //$Container.find('.year').text(oData.Year);
+        //$Container.show();
+
     </script>
+
 }
