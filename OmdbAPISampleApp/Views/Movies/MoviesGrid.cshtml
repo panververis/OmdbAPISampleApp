@@ -5,6 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@*<!-- The Modal -->
+<div id="myModalX" class="modalX">
+    <!-- Modal content -->
+    <div class="modalX-content">
+        <span class="closeX">x</span>
+        <p>Some text in the Modal..</p>
+    </div>
+</div>*@
+
 <div class="row">
     <div class="col-md-15 col-sm-3">
         <div class="input-group">
@@ -74,7 +83,19 @@
 @section Scripts
 {
     <script>
-        $(function() {
+        $(function () {
+            //// Get the <span> element that closes the modal
+            //var span = document.getElementsByClassName("closeX")[0];
+            //span.onclick = function () {
+            //    var modalX = document.getElementById('myModalX');
+            //    modalX.style.display = "none";
+            //}
+            //window.onclick = function (event) {
+            //    var modalX = document.getElementById('myModalX');
+            //    if (event.target == modalX) {
+            //        modalX.style.display = "none";
+            //    }
+            //}
             LoadFirstPageMovies();
             $("#movieSearchBox").blur(invokeSearch);
         });
@@ -93,6 +114,9 @@
                     oData = $.parseJSON(pOXhr.responseText);
                     if (oData != undefined) {
                         alert(oData.Plot);
+                        // Get the modal
+                        //var modal = document.getElementById('myModalX');
+                        //modal.style.display = "block";
                     }
                     //$Container.find('.title').text(oData.Title);
                     //$Container.find('.plot').text(oData.Plot);
