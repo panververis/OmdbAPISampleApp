@@ -1,6 +1,9 @@
 ﻿
 @model OmdbAPISampleApp.Models.Movie
-
+@*@section Scripts
+{
+    <script src="@Url.Content("~/scripts/moviesGrid.js")"></script>
+}*@
 @{
     ViewBag.Title = "Movies Grid";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,7 +15,7 @@
             <span class="input-group-addon">
                 <i class="glyphicon glyphicon-search"></i>
             </span>
-            <input type="text" class="form-control" name="Movie" placeholder="Movie Title"/>
+            <input type="text" class="form-control" id ="movieSearchBox" placeholder="Movie Title"/>
         </div>
     </div>
 </div>
