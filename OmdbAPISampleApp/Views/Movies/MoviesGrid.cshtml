@@ -18,55 +18,55 @@
 
 <div class="row">
     <div class="col-md-15 col-sm-3">
-        <span class ="batmanPoster">
-            <img src="~/Content/Images/loading_icon.png" />
+        <span>
+            <img class ="batmanPoster img-responsive" src="~/Content/Images/loading_icon.png" />
         </span>
     </div>
     <div class="col-md-15 col-sm-3">
-        <span class="spidermanPoster">
-            <img src="~/Content/Images/loading_icon.png" />
+        <span>
+            <img class="deadpoolPoster img-responsive" src="~/Content/Images/loading_icon.png" />
         </span>
     </div>
     <div class="col-md-15 col-sm-3">
-        <span class="supermanPoster">
-            <img src="~/Content/Images/loading_icon.png" />
+        <span>
+            <img class="supermanPoster img-responsive" src="~/Content/Images/loading_icon.png" />
         </span>
     </div>
     <div class="col-md-15 col-sm-3">
-        <span class="captainAmericaPoster">
-            <img src="~/Content/Images/loading_icon.png" />
+        <span>
+            <img class="captainAmericaPoster img-responsive" src="~/Content/Images/loading_icon.png" />
         </span>
     </div>
     <div class="col-md-15 col-sm-3">
-        <span class="daredevilPoster">
-            <img src="~/Content/Images/loading_icon.png" />
+        <span>
+            <img class="daredevilPoster img-responsive" src="~/Content/Images/loading_icon.png" />
         </span>
     </div>
 </div>
 <div class="row">
     <div class="col-md-15 col-sm-3">
-        <span class="theGodfatherPoster">
-            <img src="~/Content/Images/loading_icon.png" />
+        <span>
+            <img class="theGodfatherPoster img-responsive" src="~/Content/Images/loading_icon.png" />
         </span>
     </div>
     <div class="col-md-15 col-sm-3">
-        <span class="twelveAngryMenPoster">
-            <img src="~/Content/Images/loading_icon.png" />
+        <span>
+            <img class="twelveAngryMenPoster img-responsive" src="~/Content/Images/loading_icon.png" />
         </span>
     </div>
     <div class="col-md-15 col-sm-3">
-        <span class="pulpFictionPoster">
-            <img src="~/Content/Images/loading_icon.png" />
+        <span>
+            <img class="pulpFictionPoster img-responsive" src="~/Content/Images/loading_icon.png" />
         </span>
     </div>
     <div class="col-md-15 col-sm-3">
-        <span class="lordOfTheRingsPoster">
-            <img src="~/Content/Images/loading_icon.png" />
+        <span>
+            <img class="lordOfTheRingsPoster img-responsive" src="~/Content/Images/loading_icon.png" />
         </span>
     </div>
     <div class="col-md-15 col-sm-3">
-        <span class="fightClubPoster">
-            <img src="~/Content/Images/loading_icon.png" />
+        <span>
+            <img class="fightClubPoster img-responsive" src="~/Content/Images/loading_icon.png" />
         </span>
     </div>
 </div>
@@ -106,7 +106,7 @@
         function LoadFirstPageMovies() {
 
             var movieNamesArray = [
-                "Batman", "Superman", "Spiderman", "Captain America", "Daredevil",
+                "Batman", "Superman", "Deadpool", "Captain America", "Daredevil",
                 "The Godfather", "12 Angry Men", "Pulp Fiction", "Lord Of The Rings", "Fight Club"
             ];
             var movieUrls = [];
@@ -114,7 +114,7 @@
                 movieUrls.push('https://www.omdbapi.com/?t=' + movieNamesArray[i] + '&type=movie');
             }
             var oBatmanData,
-                oSpidermanData,
+                oDeadpoolData,
                 oSupermanData,
                 oCtpAmericaData,
                 oDaredevilData,
@@ -124,138 +124,145 @@
                 oLordOfTheRingsData,
                 oFightClubData;
             var objectResultArray = [
-                oBatmanData, oSpidermanData, oSupermanData, oCtpAmericaData,
+                oBatmanData, oDeadpoolData, oSupermanData, oCtpAmericaData,
                 oDaredevilData, oTheGodfatherData, oSpidermanTwelveAngryMenData, oPulpFictionData,
                 oLordOfTheRingsData, oFightClubData
             ];
 
-            for (var j = 0; j < movieNamesArray.length; j++) {
-                $.ajax(movieUrls[j],
-                {
-                    complete: function(pOXhr, pSStatus) {
-                        objectResultArray[j] = $.parseJSON(pOXhr.responseText);
-                        if (objectResultArray[j] != undefined) {
-                            alert(j + " ok");
-                        } else {
-                            alert(j + " not ok");
-                        }
-
+            $.ajax(movieUrls[0],
+            {
+                complete: function(pOXhr, pSStatus) {
+                    objectResultArray[0] = $.parseJSON(pOXhr.responseText);
+                    if (objectResultArray[0] != undefined) {
+                        AssignImageToProperGridCell(0, objectResultArray[0]);
                     }
-                });
-            }
+                }
+            });
+            $.ajax(movieUrls[1],
+            {
+                complete: function (pOXhr, pSStatus) {
+                    objectResultArray[1] = $.parseJSON(pOXhr.responseText);
+                    if (objectResultArray[1] != undefined) {
+                        AssignImageToProperGridCell(1, objectResultArray[1]);
+                    }
+                }
+            });
+            $.ajax(movieUrls[2],
+            {
+                complete: function (pOXhr, pSStatus) {
+                    objectResultArray[2] = $.parseJSON(pOXhr.responseText);
+                    if (objectResultArray[2] != undefined) {
+                        AssignImageToProperGridCell(2, objectResultArray[2]);
+                    }
+                }
+            });
+            $.ajax(movieUrls[3],
+            {
+                complete: function (pOXhr, pSStatus) {
+                    objectResultArray[3] = $.parseJSON(pOXhr.responseText);
+                    if (objectResultArray[3] != undefined) {
+                        AssignImageToProperGridCell(3, objectResultArray[3]);
+                    }
+                }
+            });
+            $.ajax(movieUrls[4],
+            {
+                complete: function (pOXhr, pSStatus) {
+                    objectResultArray[4] = $.parseJSON(pOXhr.responseText);
+                    if (objectResultArray[4] != undefined) {
+                        AssignImageToProperGridCell(4, objectResultArray[4]);
+                    }
+                }
+            });
+            $.ajax(movieUrls[5],
+            {
+                complete: function (pOXhr, pSStatus) {
+                    objectResultArray[5] = $.parseJSON(pOXhr.responseText);
+                    if (objectResultArray[5] != undefined) {
+                        AssignImageToProperGridCell(5, objectResultArray[5]);
+                    }
+                }
+            });
+            $.ajax(movieUrls[6],
+            {
+                complete: function (pOXhr, pSStatus) {
+                    objectResultArray[6] = $.parseJSON(pOXhr.responseText);
+                    if (objectResultArray[6] != undefined) {
+                        AssignImageToProperGridCell(6, objectResultArray[6]);
+                    }
+                }
+            });
+            $.ajax(movieUrls[7],
+            {
+                complete: function (pOXhr, pSStatus) {
+                    objectResultArray[7] = $.parseJSON(pOXhr.responseText);
+                    if (objectResultArray[7] != undefined) {
+                        AssignImageToProperGridCell(7, objectResultArray[7]);
+                    }
+                }
+            });
+            $.ajax(movieUrls[8],
+            {
+                complete: function (pOXhr, pSStatus) {
+                    objectResultArray[8] = $.parseJSON(pOXhr.responseText);
+                    if (objectResultArray[8] != undefined) {
+                        AssignImageToProperGridCell(8, objectResultArray[8]);
+                    }
+                }
+            });
+            $.ajax(movieUrls[9],
+            {
+                complete: function (pOXhr, pSStatus) {
+                    objectResultArray[9] = $.parseJSON(pOXhr.responseText);
+                    if (objectResultArray[9] != undefined) {
+                        AssignImageToProperGridCell(9, objectResultArray[9]);
+                    }
+                }
+            });
         }
-
-        //$.when(
-
-        //    $.ajax(movieUrls[0],
-        //    {complete: function(pOXhr, pSStatus) {
-        //            objectResultArray[0] = $.parseJSON(pOXhr.responseText);
-        //            if (objectResultArray[0] != undefined) {
-        //                alert("0 ok");
-        //            } else {
-        //                alert("0 not ok");
-        //            }
-
-        //        }
-        //    }), 
-
-        //    $.ajax(movieUrls[1],
-        //    {complete: function (pOXhr, pSStatus) {
-        //            objectResultArray[1] = $.parseJSON(pOXhr.responseText);
-        //            if (objectResultArray[1] != undefined) {
-        //                alert("1 ok");
-        //            } else {
-        //                alert("1 not ok");
-        //            }
-        //        }
-        //    }),
-        //    $.ajax(movieUrls[2],
-        //    {complete: function (pOXhr, pSStatus) {
-        //        objectResultArray[2] = $.parseJSON(pOXhr.responseText);
-        //        if (objectResultArray[2] != undefined) {
-        //            alert("2 ok");
-        //        } else {
-        //            alert("2 not ok");
-        //        }
-        //    }
-        //    }),
-        //    $.ajax(movieUrls[3],
-        //    {complete: function (pOXhr, pSStatus) {
-        //        objectResultArray[3] = $.parseJSON(pOXhr.responseText);
-        //        if (objectResultArray[3] != undefined) {
-        //            alert("3 ok");
-        //        } else {
-        //            alert("3 not ok");
-        //        }
-        //    }
-        //    }),
-        //    $.ajax(movieUrls[4],
-        //    {complete: function (pOXhr, pSStatus) {
-        //        objectResultArray[4] = $.parseJSON(pOXhr.responseText);
-        //        if (objectResultArray[4] != undefined) {
-        //            alert("4 ok");
-        //        } else {
-        //            alert("4 not ok");
-        //        }
-        //    }
-        //    }),
-        //    $.ajax(movieUrls[5],
-        //    {complete: function (pOXhr, pSStatus) {
-        //        objectResultArray[5] = $.parseJSON(pOXhr.responseText);
-        //        if (objectResultArray[5] != undefined) {
-        //            alert("5 ok");
-        //        } else {
-        //            alert("5 not ok");
-        //        }
-        //    }
-        //    }),
-        //    $.ajax(movieUrls[6],
-        //    {complete: function (pOXhr, pSStatus) {
-        //        objectResultArray[6] = $.parseJSON(pOXhr.responseText);
-        //        if (objectResultArray[6] != undefined) {
-        //            alert("6 ok");
-        //        } else {
-        //            alert("6 not ok");
-        //        }
-        //    }
-        //    }),
-        //    $.ajax(movieUrls[7],
-        //    {complete: function (pOXhr, pSStatus) {
-        //        objectResultArray[7] = $.parseJSON(pOXhr.responseText);
-        //        if (objectResultArray[7] != undefined) {
-        //            alert("7 ok");
-        //        } else {
-        //            alert("7 not ok");
-        //        }
-        //    }
-        //    }),
-        //    $.ajax(movieUrls[8],
-        //    {complete: function (pOXhr, pSStatus) {
-        //        objectResultArray[8] = $.parseJSON(pOXhr.responseText);
-        //        if (objectResultArray[8] != undefined) {
-        //            alert("8 ok");
-        //        } else {
-        //            alert("8 not ok");
-        //        }
-        //    }
-        //    }),
-        //    $.ajax(movieUrls[9],
-        //    {complete: function (pOXhr, pSStatus) {
-        //        objectResultArray[9] = $.parseJSON(pOXhr.responseText);
-        //        if (objectResultArray[9] != undefined) {
-        //            alert("9 ok");
-        //        } else {
-        //            alert("9 not ok");
-        //        }
-        //    }
-        //    })
-        //).then(alert("All loaded"));
 
         //$Container.find('.title').text(oData.Title);
         //$Container.find('.plot').text(oData.Plot);
         //$Container.find('.poster').html('<img src="' + oData.Poster + '" />');
         //$Container.find('.year').text(oData.Year);
         //$Container.show();
+
+        function AssignImageToProperGridCell(callNo, resultObject) {
+            switch (callNo) {
+                case 0:
+                    $(".batmanPoster").attr("src", resultObject.Poster);
+                    break;
+                case 1:
+                    $(".deadpoolPoster").attr("src", resultObject.Poster);
+                    break;
+                case 2:
+                    $(".supermanPoster").attr("src", resultObject.Poster);
+                    break;
+                case 3:
+                    $(".captainAmericaPoster").attr("src", resultObject.Poster);
+                    break;
+                case 4:
+                    $(".daredevilPoster").attr("src", resultObject.Poster);
+                    break;
+                case 5:
+                    $(".theGodfatherPoster").attr("src", resultObject.Poster);
+                    break;
+                case 6:
+                    $(".twelveAngryMenPoster").attr("src", resultObject.Poster);
+                    break;
+                case 7:
+                    $(".pulpFictionPoster").attr("src", resultObject.Poster);
+                    break;
+                case 8:
+                    $(".lordOfTheRingsPoster").attr("src", resultObject.Poster);
+                    break;
+                case 9:
+                    $(".fightClubPoster").attr("src", resultObject.Poster);
+                    break;
+                default:
+                    break;
+            }
+        }
 
     </script>
 
