@@ -5,6 +5,7 @@ namespace OmdbAPISampleApp
 {
     public class BundleConfig
     {
+
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
@@ -25,8 +26,8 @@ namespace OmdbAPISampleApp
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css", "~/Content/OmdbAPISampleApp.css")
-                      );
+                      "~/Content/site.css", "~/Content/OmdbAPISampleApp.css"));
         }
+
     }
 }
