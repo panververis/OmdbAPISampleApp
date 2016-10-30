@@ -18,29 +18,57 @@
 
 <div class="row">
     <div class="col-md-15 col-sm-3">
-        Hello one column
+        <span class ="batmanPoster">
+        </span>
     </div>
     <div class="col-md-15 col-sm-3">
-        Hello two column
+        <span class="spidermanPoster">
+        </span>
     </div>
     <div class="col-md-15 col-sm-3">
-        Hello three column
+        <span class="supermanPoster">
+        </span>
     </div>
     <div class="col-md-15 col-sm-3">
-        Hello four column
+        <span class="captainAmericaPoster">
+        </span>
     </div>
     <div class="col-md-15 col-sm-3">
-        Hello five column
+        <span class="daredevilPoster">
+        </span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-15 col-sm-3">
+        <span class="theGodfatherPoster">
+        </span>
+    </div>
+    <div class="col-md-15 col-sm-3">
+        <span class="twelveAngryMenPoster">
+        </span>
+    </div>
+    <div class="col-md-15 col-sm-3">
+        <span class="pulpFictionPoster">
+        </span>
+    </div>
+    <div class="col-md-15 col-sm-3">
+        <span class="lordOfTheRingsPoster">
+        </span>
+    </div>
+    <div class="col-md-15 col-sm-3">
+        <span class="fightClubPoster">
+        </span>
     </div>
 </div>
 
 @section Scripts
 {
     <script>
-
         $(function() {
+            //LoadFirstPageMovies();
             $("#movieSearchBox").blur(invokeSearch);
         });
+
         function invokeSearch() {
             var sMovieName = $("#movieSearchBox").val();
             if (!sMovieName) {
@@ -49,8 +77,9 @@
             var oData;
             var sUrl = 'https://www.omdbapi.com/?t=' + sMovieName + '&type=movie&tomatoes=true';
 
-            $.ajax(sUrl, {
-                complete: function (pOXhr, pSStatus) {
+            $.ajax(sUrl,
+            {
+                complete: function(pOXhr, pSStatus) {
                     oData = $.parseJSON(pOXhr.responseText);
                     if (oData != undefined) {
                         alert(oData.Plot);
@@ -62,6 +91,31 @@
                     //$Container.show();
                 }
             });
+        }
+
+        function LoadFirstPageMovies() {
+
+            var movieNamesArray = ["Batman", "Superman", "Spiderman", "Captain America", "Daredevil",
+            "The Godfather", "12 Angry Men", "Pulp Fiction", "Lord Of The Rings", "Fight Club"];
+            var oBatmanData,
+                oSpidermanData,
+                oSupermanData,
+                oCtpAmericaData,
+                oDaredevilData,
+                oTheGodfatherData,
+                oSpidermanTwelveAngryMenData,
+                oPulpFictionData,
+                oLordOfTheRingsData,
+                oFightClubData;
+            var objectResultArray = [oBatmanData, oSpidermanData, oSupermanData, oCtpAmericaData,
+                oDaredevilData, oTheGodfatherData, oSpidermanTwelveAngryMenData, oPulpFictionData,
+                oLordOfTheRingsData, oFightClubData];
+
+            $.when(
+            {
+                
+            }).then(alert("hello"));
+        
         }
 
     </script>
