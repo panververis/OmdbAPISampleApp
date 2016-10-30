@@ -9,10 +9,11 @@ namespace OmdbAPISampleApp.Controllers
 {
     public class MoviesController : Controller
     {
-        // GET: Movies
+
         public ActionResult MoviesGrid()
         {
             return View();
         }
+
     }
 }
