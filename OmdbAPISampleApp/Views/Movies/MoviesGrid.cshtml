@@ -43,8 +43,10 @@
         });
         function invokeSearch() {
             var sMovieName = $("#movieSearchBox").val();
+            if (!sMovieName) {
+                return;
+            }
             var oData;
-
             var sUrl = 'https://www.omdbapi.com/?t=' + sMovieName + '&type=movie&tomatoes=true';
 
             $.ajax(sUrl, {
